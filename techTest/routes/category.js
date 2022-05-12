@@ -1,16 +1,20 @@
 var express = require('express');
 var router = express.Router();
-var db = require('../database');
+var service = require('../service/category');
+var db = require('../database/database');
 
 router.get("/all", function(req, res) {
-    db.Category.findAll()
-        .then( categories => {
-            res.status(200).send(JSON.stringify(categories));
+    try {
+        service.GetAll((httpStatusCode, message, response) => {
+            return res.status(httpStatusCode).send({
+                status: httpStatusCode,
+                message,
+                response
+            });
         })
-        .catch( err => {
-            console.log(err);
-            res.status(500).send(JSON.stringify(err));
-        });
+    } catch (error) {
+        return res.status(500).send(JSON.stringify(err));
+    }
 });
 
 router.get("/:id", function(req, res) {
