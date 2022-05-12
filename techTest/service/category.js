@@ -48,4 +48,16 @@ async function Delete(id, callback) {
     });
 }
 
-module.exports = { GetAll, GetById, Create, Delete };
+async function Update(id, field, value, callback) {
+    return await repository.Update(id, field, value).then(updated => {
+        if (updated)
+            callback(200, 'Success', null);
+        else
+            callback(500, 'Error', null);
+    })
+    .catch(err => {
+        callback(500, 'Error', JSON.stringify(err));
+    });
+}
+
+module.exports = { GetAll, GetById, Create, Delete, Update };

@@ -58,4 +58,46 @@ router.delete("/:id", function(req, res) {
     }
 });
 
+router.put("/:id/name", function(req, res) {
+    try {
+        service.Update(req.params.id, 'name', req.body.value, (httpStatusCode, message, response) => {
+            return res.status(httpStatusCode).send({
+                status: httpStatusCode,
+                message,
+                response
+            });
+        })
+    } catch (error) {
+        return res.status(500).send(JSON.stringify(err));
+    }
+});
+
+router.put("/:id/description", function(req, res) {
+    try {
+        service.Update(req.params.id, 'description', req.body.value, (httpStatusCode, message, response) => {
+            return res.status(httpStatusCode).send({
+                status: httpStatusCode,
+                message,
+                response
+            });
+        })
+    } catch (error) {
+        return res.status(500).send(JSON.stringify(err));
+    }
+});
+
+router.put("/:id/status", function(req, res) {
+    try {
+        service.Update(req.params.id, 'status', req.body.value, (httpStatusCode, message, response) => {
+            return res.status(httpStatusCode).send({
+                status: httpStatusCode,
+                message,
+                response
+            });
+        })
+    } catch (error) {
+        return res.status(500).send(JSON.stringify(err));
+    }
+});
+
 module.exports = router;
