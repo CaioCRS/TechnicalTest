@@ -1,8 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var service = require('../service/product');
+var Auth = require('../middleware/middleware');
 
-router.get("/all", function(req, res) {
+router.get("/all", Auth, function(req, res) {
     try {
         service.GetAll((httpStatusCode, message, response) => {
             return res.status(httpStatusCode).send({
@@ -16,7 +17,7 @@ router.get("/all", function(req, res) {
     }
 });
 
-router.get("/:id", function(req, res) {
+router.get("/:id", Auth, function(req, res) {
     try {
         service.GetById(req.params.id, (httpStatusCode, message, response) => {
             return res.status(httpStatusCode).send({
@@ -30,7 +31,7 @@ router.get("/:id", function(req, res) {
     }
 });
 
-router.post("/", function(req, res) {
+router.post("/", Auth, function(req, res) {
     try {
         service.Create(req.body, (httpStatusCode, message, response) => {
             return res.status(httpStatusCode).send({
@@ -44,7 +45,7 @@ router.post("/", function(req, res) {
     }
 });
 
-router.delete("/:id", function(req, res) {
+router.delete("/:id", Auth, function(req, res) {
     try {
         service.Delete(req.params.id, (httpStatusCode, message, response) => {
             return res.status(httpStatusCode).send({
@@ -58,7 +59,7 @@ router.delete("/:id", function(req, res) {
     }
 });
 
-router.put("/:id/name", function(req, res) {
+router.put("/:id/name", Auth, function(req, res) {
     try {
         service.Update(req.params.id, 'name', req.body.value, (httpStatusCode, message, response) => {
             return res.status(httpStatusCode).send({
@@ -72,7 +73,7 @@ router.put("/:id/name", function(req, res) {
     }
 });
 
-router.put("/:id/description", function(req, res) {
+router.put("/:id/description", Auth, function(req, res) {
     try {
         service.Update(req.params.id, 'description', req.body.value, (httpStatusCode, message, response) => {
             return res.status(httpStatusCode).send({
@@ -86,7 +87,7 @@ router.put("/:id/description", function(req, res) {
     }
 });
 
-router.put("/:id/status", function(req, res) {
+router.put("/:id/status", Auth, function(req, res) {
     try {
         service.Update(req.params.id, 'status', req.body.value, (httpStatusCode, message, response) => {
             return res.status(httpStatusCode).send({
@@ -100,7 +101,7 @@ router.put("/:id/status", function(req, res) {
     }
 });
 
-router.put("/:id/value", function(req, res) {
+router.put("/:id/value", Auth, function(req, res) {
     try {
         service.Update(req.params.id, 'value', req.body.value, (httpStatusCode, message, response) => {
             return res.status(httpStatusCode).send({
