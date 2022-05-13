@@ -1,53 +1,117 @@
 var express = require('express');
 var router = express.Router();
-var db = require('../database');
+var service = require('../service/product');
 
 router.get("/all", function(req, res) {
-    db.Person.findAll()
-        .then( persons => {
-            res.status(200).send(JSON.stringify(persons));
+    try {
+        service.GetAll((httpStatusCode, message, response) => {
+            return res.status(httpStatusCode).send({
+                status: httpStatusCode,
+                message,
+                response
+            });
         })
-        .catch( err => {
-            res.status(500).send(JSON.stringify(err));
-        });
+    } catch (error) {
+        return res.status(500).send(JSON.stringify(err));
+    }
 });
 
 router.get("/:id", function(req, res) {
-    db.Person.findByPk(req.params.id)
-        .then( person => {
-            res.status(200).send(JSON.stringify(person));
+    try {
+        service.GetById(req.params.id, (httpStatusCode, message, response) => {
+            return res.status(httpStatusCode).send({
+                status: httpStatusCode,
+                message,
+                response
+            });
         })
-        .catch( err => {
-            res.status(500).send(JSON.stringify(err));
-        });
+    } catch (error) {
+        return res.status(500).send(JSON.stringify(err));
+    }
 });
 
-router.put("/", function(req, res) {
-    db.Person.create({
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        id: req.body.id
+router.post("/", function(req, res) {
+    try {
+        service.Create(req.body, (httpStatusCode, message, response) => {
+            return res.status(httpStatusCode).send({
+                status: httpStatusCode,
+                message,
+                response
+            });
         })
-        .then( person => {
-            res.status(200).send(JSON.stringify(person));
-        })
-        .catch( err => {
-            res.status(500).send(JSON.stringify(err));
-        });
+    } catch (error) {
+        return res.status(500).send(JSON.stringify(err));
+    }
 });
 
 router.delete("/:id", function(req, res) {
-    db.Person.destroy({
-        where: {
-            id: req.params.id
-        }
+    try {
+        service.Delete(req.params.id, (httpStatusCode, message, response) => {
+            return res.status(httpStatusCode).send({
+                status: httpStatusCode,
+                message,
+                response
+            });
         })
-        .then( () => {
-            res.status(200).send();
+    } catch (error) {
+        return res.status(500).send(JSON.stringify(err));
+    }
+});
+
+router.put("/:id/name", function(req, res) {
+    try {
+        service.Update(req.params.id, 'name', req.body.value, (httpStatusCode, message, response) => {
+            return res.status(httpStatusCode).send({
+                status: httpStatusCode,
+                message,
+                response
+            });
         })
-        .catch( err => {
-            res.status(500).send(JSON.stringify(err));
-        });
+    } catch (error) {
+        return res.status(500).send(JSON.stringify(err));
+    }
+});
+
+router.put("/:id/description", function(req, res) {
+    try {
+        service.Update(req.params.id, 'description', req.body.value, (httpStatusCode, message, response) => {
+            return res.status(httpStatusCode).send({
+                status: httpStatusCode,
+                message,
+                response
+            });
+        })
+    } catch (error) {
+        return res.status(500).send(JSON.stringify(err));
+    }
+});
+
+router.put("/:id/status", function(req, res) {
+    try {
+        service.Update(req.params.id, 'status', req.body.value, (httpStatusCode, message, response) => {
+            return res.status(httpStatusCode).send({
+                status: httpStatusCode,
+                message,
+                response
+            });
+        })
+    } catch (error) {
+        return res.status(500).send(JSON.stringify(err));
+    }
+});
+
+router.put("/:id/value", function(req, res) {
+    try {
+        service.Update(req.params.id, 'value', req.body.value, (httpStatusCode, message, response) => {
+            return res.status(httpStatusCode).send({
+                status: httpStatusCode,
+                message,
+                response
+            });
+        })
+    } catch (error) {
+        return res.status(500).send(JSON.stringify(err));
+    }
 });
 
 module.exports = router;

@@ -1,4 +1,5 @@
 var repository = require('../repository/category');
+var productRepository = require('../repository/product');
 
 async function GetAll(callback) {
     return await repository.GetAll().then(categories => {
@@ -7,9 +8,9 @@ async function GetAll(callback) {
         else
             callback(200, 'Success', categories);
     })
-    .catch(err => {
-        callback(500, 'Error', JSON.stringify(err));
-    });
+        .catch(err => {
+            callback(500, 'Error', JSON.stringify(err));
+        });
 }
 
 async function GetById(id, callback) {
@@ -19,9 +20,9 @@ async function GetById(id, callback) {
         else
             callback(200, 'Success', category);
     })
-    .catch(err => {
-        callback(500, 'Error', JSON.stringify(err));
-    });
+        .catch(err => {
+            callback(500, 'Error', JSON.stringify(err));
+        });
 }
 
 async function Create(category, callback) {
@@ -31,21 +32,28 @@ async function Create(category, callback) {
         else
             callback(500, 'Error', null);
     })
-    .catch(err => {
-        callback(500, 'Error', JSON.stringify(err));
-    });
+        .catch(err => {
+            callback(500, 'Error', JSON.stringify(err));
+        });
 }
 
 async function Delete(id, callback) {
-    return await repository.Delete(id).then(deleted => {
-        if (deleted)
-            callback(200, 'Success', null);
-        else
-            callback(500, 'Error', null);
-    })
-    .catch(err => {
-        callback(500, 'Error', JSON.stringify(err));
-    });
+    let product = await productRepository.GetByCategory(id);
+    
+    if (product.length === 0) {
+        return await repository.Delete(id).then(deleted => {
+            if (deleted)
+                callback(200, 'Success', null);
+            else
+                callback(500, 'Error', null);
+        })
+            .catch(err => {
+                callback(500, 'Error', JSON.stringify(err));
+            });
+    }
+    else {
+        callback(400, 'Cannot be removed, because exists a product associated', null);
+    }
 }
 
 async function Update(id, field, value, callback) {
@@ -55,9 +63,9 @@ async function Update(id, field, value, callback) {
         else
             callback(500, 'Error', null);
     })
-    .catch(err => {
-        callback(500, 'Error', JSON.stringify(err));
-    });
+        .catch(err => {
+            callback(500, 'Error', JSON.stringify(err));
+        });
 }
 
 module.exports = { GetAll, GetById, Create, Delete, Update };
