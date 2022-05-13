@@ -31,6 +31,27 @@ router.get("/:id", Auth, function(req, res) {
     }
 });
 
+/**
+ * @swagger
+ * /category:
+ *  post:
+ *     summary: Create a category
+ *     requestBody:
+ *       description: Creating a new category
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Category'
+ *         text/plain:
+ *           schema:
+ *             type: string
+ *     responses:
+ *       '201':
+ *         description: Created
+ *       '500':
+ *         description: Error
+ */
 router.post("/", Auth, function(req, res) {
     try {
         service.Create(req.body, (httpStatusCode, message, response) => {
