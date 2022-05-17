@@ -47,7 +47,7 @@ This project, is a API developed with NodeJS(Javascript), with a conection to da
 
 This repository, has follow parts:
 1. Backend (NodeJS) 
-2. Databse (Postgres)
+2. Database (Postgres)
 
 ### Requirements
 
