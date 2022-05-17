@@ -15,5 +15,91 @@
                 "type": "string"
             }
         }
+    },
+    "Product": {
+        "type": "object",
+        "properties": {
+            "name": {
+                "type": "string"
+            },
+            "description": {
+                "type": "string"
+            },
+            "status": {
+                "type": "boolean"
+            },
+            "regDate": {
+                "type": "string"
+            },
+            "value": {
+                "type": "integer"
+            },
+            "CategoryId": {
+                "type": "integer"
+            }
+        }
+    },
+    "ProductImport": {
+        "type": "array",
+        "items":{
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                },
+                "regDate": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "integer"
+                },
+                "category": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "type": "string"
+                        },
+                        "description": {
+                            "type": "string"
+                        },
+                        "status": {
+                            "type": "boolean"
+                        },
+                        "regDate": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "Value": {
+        "type": "object",
+        "properties": {
+            "value": {
+                "type": "string"
+            }
+        }
+    },
+    "ValueBoolean": {
+        "type": "object",
+        "properties": {
+            "value": {
+                "type": "boolean"
+            }
+        }
+    },
+    "CategoryId": {
+        "type": "object",
+        "properties": {
+            "categoryId": {
+                "type": "integer"
+            }
+        }
     }
 }

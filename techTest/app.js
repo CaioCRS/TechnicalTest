@@ -12,6 +12,10 @@ var productRoute = require('./routes/product');
 
 var app = express();
 
+app.get('/', function(req, res){
+    res.send('Technical Test');
+});
+
 var swaggerDefinition = {
     openapi: '3.0.1',
     info:

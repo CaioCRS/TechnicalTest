@@ -32,8 +32,8 @@ async function Create(category) {
             status: category.status,
             regDate: category.regDate
         })
-            .then(_ => {
-                resolve(true);
+            .then(inserted => {
+                resolve(inserted);
             })
             .catch(err => {
                 reject(err);
@@ -67,4 +67,20 @@ async function Update(id, field, value) {
     });
 }
 
-module.exports = { GetAll, GetById, Create, Delete, Update };
+async function GetByField(field, value) {
+    return new Promise((resolve, reject) => {
+        db.Category.findAll({
+            where: {
+                [field]: value
+            }
+        })
+        .then(product => {
+            resolve(product);
+        })
+        .catch(err => {
+            reject(err);
+        });
+    });
+}
+
+module.exports = { GetAll, GetById, Create, Delete, Update, GetByField };

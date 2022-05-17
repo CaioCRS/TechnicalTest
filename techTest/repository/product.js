@@ -24,11 +24,11 @@ async function GetById(id) {
     });
 }
 
-async function GetByCategory(categoryId) {
+async function GetByField(field, value) {
     return new Promise((resolve, reject) => {
         db.Product.findAll({
             where: {
-                CategoryId: categoryId
+                [field]: value
             }
         })
             .then(product => {
@@ -50,8 +50,8 @@ async function Create(product) {
             value: product.value,
             CategoryId: product.CategoryId
         })
-            .then(_ => {
-                resolve(true);
+            .then(inserted => {
+                resolve(inserted);
             })
             .catch(err => {
                 reject(err);
@@ -85,4 +85,4 @@ async function Update(id, field, value) {
     });
 }
 
-module.exports = { GetAll, GetById, GetByCategory, Create, Delete, Update };
+module.exports = { GetAll, GetById, GetByField, Create, Delete, Update };
