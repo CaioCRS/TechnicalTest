@@ -12,7 +12,7 @@
 
 ## 💻 About
 
-This project, is a API developed with NodeJS(Javascript), with a conection to database Postgres, runing inside a Docker container.
+This project, is a API developed with NodeJS(Javascript), with a connection to database Postgres, running inside a Docker container.
 
 ---
 
@@ -20,7 +20,7 @@ This project, is a API developed with NodeJS(Javascript), with a conection to da
 
 - [x] Category
   - [x] Search categories
-  - [x] Search especific category
+  - [x] Search specific category
   - [x] Remove a category
   - [x] Create a category
   - [x] Update name of category
@@ -29,7 +29,7 @@ This project, is a API developed with NodeJS(Javascript), with a conection to da
 
 - [x] Product
   - [x] Search products
-  - [x] Search especific product
+  - [x] Search specific product
   - [x] Remove a product
   - [x] Create a product
   - [x] Import products
@@ -97,7 +97,7 @@ Let's compose!
 # U can verify the tests on docker compose too(Optionally)
 $ docker compose run techtest npm test
 
-# Up the ambient, starting the server of API, 'n the Database inside the container
+# Up the ambient, starting the server of API and the Database inside the container
 $ docker compose up -d
 
 ```
@@ -106,7 +106,7 @@ $ docker compose up -d
 
 ## 🛠 Testing
 
-After runing the ambient, the server is accessible on your localhost, on port 3000.
+After running the ambient, the server is accessible on your localhost, on port 3000.
 The list of methods, you can verify on path "/api-docs/".
 > Sample: http://localhost:3000/api-docs/
 
@@ -118,6 +118,6 @@ You need type any character on "Authorize" box, to set the Authorization key on 
 
 It was a pleasure to carry out this test. I tried to use some techniques and concepts in order to demonstrate part of my knowledge.
 
-*The false authorization was just to exemplify what the control would be like. In the authorization phase, it would be possible to validate with JWT, for example.
+*The fake authorization was just to exemplify what the control would be like. In the authorization phase, it would be possible to validate with JWT, for example.
 
 ---
