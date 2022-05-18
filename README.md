@@ -118,4 +118,6 @@ You need type any character on "Authorize" box, to set the Authorization key on 
 
 It was a pleasure to carry out this test. I tried to use some techniques and concepts in order to demonstrate part of my knowledge.
 
+*The false authorization was just to exemplify what the control would be like. In the authorization phase, it would be possible to validate with JWT, for example.
+
 ---
