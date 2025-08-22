@@ -1,7 +1,7 @@
 <h4 align="center"> 
 	TECHNICAL TEST
 </h4>
-
+   
 <p align="center">
  <a href="#-about">About</a> •
  <a href="#-functionalities">Functionalities</a> •
